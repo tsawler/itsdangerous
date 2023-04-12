@@ -22,3 +22,7 @@ To run benchmarks, execute this command:
 ~~~
 go test -v -bench=.
 ~~~
+
+## Credit
+This code is an updated version of [go-alone](https://github.com/bwmarrin/go-alone). Major changes include updating to use go modules, and 
+moving from BLAKE2b to BLAKE3.
