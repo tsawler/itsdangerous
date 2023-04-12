@@ -9,7 +9,7 @@ itsdangerous is a [Go](https://golang.org/) package which provides
 
 BLAKE3 support is provided by [blake3](https://github.com/lukechampine/blake3).
 
-## Usage
+## Installation
 Go get the package in the usual way:
 
 ~~~
