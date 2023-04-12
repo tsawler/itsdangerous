@@ -7,7 +7,8 @@ import (
 	"time"
 )
 
-var testSecret = "Y6gpPebdkwwRjJRTVhJmbiP4Ng94pnAt"
+// var testSecret = "Y6gpPebdkwwRjJRTVhJmbiP4Ng94pnAt"
+var testSecret = "AVerySecretString"
 
 func TestTimeCoding(t *testing.T) {
 
@@ -40,16 +41,11 @@ func TestNewNil(t *testing.T) {
 }
 
 func TestNewSecret(t *testing.T) {
-	t.Log("creating secret")
 	secret := []byte(testSecret)
-	t.Log("calling new")
 	s := New(secret)
-	t.Log("Got past new")
 	if s == nil {
-		t.Log("failing at new")
 		t.Fatal("New returned a nil")
 	}
-	t.Log("Got new")
 
 	if s.hash == nil {
 		t.Fatal("New returned a Sword with a nil hash")
@@ -99,8 +95,10 @@ func TestUnsignTooLittle(t *testing.T) {
 func TestSign(t *testing.T) {
 
 	secret := []byte(testSecret)
+	secret = padSecret(secret)
+	//secret := []byte("hello")
 	data := []byte(`1203981209381290.LutinRocks`)
-	want := []byte(`1203981209381290.LutinRocks.bJ38BUfnnM-eu4cVP_M-rR07trBbXwmy1TnLbqXCPQ8`)
+	want := []byte(`1203981209381290.LutinRocks.p5l-D9w5MtSGs9LyTR5fWGHkP-5dW2YvBrYl1JGrA7Y`)
 
 	s := New(secret)
 	token := s.Sign(data)
@@ -176,7 +174,8 @@ func TestSignEpoch(t *testing.T) {
 func TestUnsign(t *testing.T) {
 
 	secret := []byte(testSecret)
-	token := []byte(`1203981209381290.LutinRocks.bJ38BUfnnM-eu4cVP_M-rR07trBbXwmy1TnLbqXCPQ8`)
+	secret = padSecret(secret)
+	token := []byte(`1203981209381290.LutinRocks.p5l-D9w5MtSGs9LyTR5fWGHkP-5dW2YvBrYl1JGrA7Y`)
 	want := []byte(`1203981209381290.LutinRocks`)
 
 	s := New(secret)

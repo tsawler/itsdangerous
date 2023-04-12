@@ -1,4 +1,4 @@
-module github.com/tsawler/goalone
+module github.com/tsawler/itsdangerous
 
 go 1.20
 

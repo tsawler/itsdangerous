@@ -28,10 +28,11 @@ var ErrInvalidSignature = errors.New("invalid signature")
 var ErrShortToken = errors.New("token is too small to be valid")
 
 // New takes a secret key and returns a new Sword.  If no Options are provided
-// then minimal defaults will be used. NOTE: The key must be 64 bytes or fewer.
+// then minimal defaults will be used. NOTE: The key must be 32 bytes.
 // If a larger key is provided it will be truncated to 64 bytes.
 // func New(key []byte, o *Options) *Sword {
 func New(key []byte, options ...func(*Sword)) *Sword {
+	key = padSecret(key)
 	// Create a map for decoding Base58.  This speeds up the process tremendously.
 	for i := 0; i < len(encodeBase58Map); i++ {
 		decodeBase58Map[encodeBase58Map[i]] = byte(i)
@@ -46,6 +47,18 @@ func New(key []byte, options ...func(*Sword)) *Sword {
 	s.hash = blake3.New(32, key)
 
 	return s
+}
+
+func padSecret(key []byte) []byte {
+	// Make sure key is at least 32 characters long.
+	if len(key) < 32 {
+		str := string(key)
+		for i := 0; i < (32 - len(key)); i++ {
+			str = str + " "
+		}
+		key = []byte(str)
+	}
+	return key
 }
 
 // Epoch is a functional option that can be passed to New() to set the Epoch
@@ -126,7 +139,6 @@ var decodeBase58Map [256]byte
 
 // sign creates the encoded signature of payload and writes to dst.
 func (s *Sword) sign(dst, payload []byte) {
-
 	s.Lock()
 	if s.dirty {
 		s.hash.Reset()
