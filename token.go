@@ -15,7 +15,6 @@ type Token struct {
 // Options into a Token struct. For this to work correctly the Sword Options need
 // to match that of what was used when the token was initially created.
 func (s *Sword) Parse(t []byte) Token {
-
 	tl := len(t)
 	el := base64.RawURLEncoding.EncodedLen(s.hash.Size())
 
