@@ -13,7 +13,7 @@ BLAKE3 support is provided by [blake3](https://github.com/lukechampine/blake3).
 Go get the package in the usual way:
 
 ~~~
-go get github.com/tsawler/itsdangerous
+go get -u github.com/tsawler/itsdangerous
 ~~~
 
 ## Tests
