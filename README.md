@@ -33,12 +33,12 @@ import (
 	"fmt"
 	signer "github.com/tsawler/itsdangerous"
 	"log"
+	"time"
 )
 
 func main() {
 	// Create a secret; typically, make this 32 characters long.
 	var secret = []byte("some-very-good-secret")
-	
 	// The data to be signed.
 	var data = []byte("https://example.com?id=10")
 
@@ -62,6 +62,21 @@ func main() {
 		fmt.Println("Signed:", string(token))
 		fmt.Println("Valid signature!")
 	}
+
+	// Create a new signer, this time with a timestamp.
+	s2 := signer.New(secret, signer.Timestamp)
+	token = s2.Sign(data)
+
+	// Parse the token.
+	ts := s.Parse([]byte(token))
+
+	// Wait two seconds to expire the token.
+	time.Sleep(2)
+
+	// The token should be expired at this point.
+	if time.Since(ts.Timestamp) > time.Second {
+		log.Println("Token with timestamp is expired!")
+	}
 }
 ~~~
 
@@ -72,6 +87,7 @@ tcs@Grendel example-itsdangerous % go run .
 Signed: https://example.com?id=10.eoaZ-lDxxuZ-BK5PFmbZlVps0Htqi6NILs0HR47Dvs0
 Unsigned: https://example.com?id=10
 Valid signature!
+Token with timestamp is expired!
 ~~~
 
 ## Tests
