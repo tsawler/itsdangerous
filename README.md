@@ -57,6 +57,15 @@ func main() {
 }
 ~~~
 
+The output of this program is something like:
+
+~~~
+tcs@Grendel example-itsdangerous % go run .
+Signed: https://example.com?id=10.eoaZ-lDxxuZ-BK5PFmbZlVps0Htqi6NILs0HR47Dvs0
+Unsigned: https://example.com?id=10
+Valid signature!
+~~~
+
 ## Tests
 To run all tests, execute this command: 
 
