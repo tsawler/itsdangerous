@@ -19,7 +19,7 @@ go get -u github.com/tsawler/itsdangerous
 ## Usage
 A simple example:
 
-~~~
+~~~go
 package main
 
 import (
