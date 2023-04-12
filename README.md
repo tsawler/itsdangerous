@@ -71,7 +71,7 @@ func main() {
 	ts := s2.Parse([]byte(token))
 
 	// The token should be not expired at this point.
-	if time.Since(ts.Timestamp) < time.Duration(1)*time.Second {
+	if time.Since(ts.Timestamp) < time.Second {
 		log.Println("Token with timestamp has not expired!")
 	}
 
