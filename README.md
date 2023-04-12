@@ -1,8 +1,8 @@
 [![Version](https://img.shields.io/badge/goversion-1.20.x-blue.svg)](https://golang.org)
 <a href="https://golang.org"><img src="https://img.shields.io/badge/powered_by-Go-3362c2.svg?style=flat-square" alt="Built with GoLang"></a>
-[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/tsawler/jot/master/LICENSE)
+[![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/tsawler/itsdangerous/master/LICENSE)
 <a href="https://pkg.go.dev/github.com/tsawler/itsdangerous"><img src="https://img.shields.io/badge/godoc-reference-%23007d9c.svg"></a>
-[![Go Report Card](https://goreportcard.com/badge/github.com/tsawler/itsdangerous)](https://goreportcard.com/report/github.com/tsawler/jot)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tsawler/itsdangerous)](https://goreportcard.com/report/github.com/tsawler/itsdangerous)
 
 
 # It's Dangerous
