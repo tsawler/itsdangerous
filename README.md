@@ -39,6 +39,7 @@ import (
 func main() {
 	// Create a secret; typically, make this 32 characters long.
 	var secret = []byte("some-very-good-secret")
+	
 	// The data to be signed.
 	var data = []byte("https://example.com?id=10")
 
