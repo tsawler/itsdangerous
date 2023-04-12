@@ -9,6 +9,13 @@ itsdangerous is a [Go](https://golang.org/) package which provides
 
 BLAKE3 support is provided by [blake3](https://github.com/lukechampine/blake3).
 
+## Usage
+Go get the package in the usual way:
+
+~~~
+go get github.com/tsawler/itsdangerous
+~~~
+
 ## Tests
 To run all tests, execute this command: 
 
