@@ -7,7 +7,7 @@ itsdangerous is a [Go](https://golang.org/) package which provides
 * A very simple to use API with good documentation and 100% test coverage.
 * Various helper methods for parsing tokens
 
-BLAKE3 support is provided by [blake3](https://github.com/lukechampine.com/blake3).
+BLAKE3 support is provided by [blake3](https://github.com/lukechampine/blake3).
 
 ## Tests
 To run all tests, execute this command: 
