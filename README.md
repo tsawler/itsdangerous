@@ -1,5 +1,11 @@
-# untitled
+# It's Dangerous
 
+itsdangerous is a [Go](https://golang.org/) package which provides
+* Methods to create and verify [MAC](https://en.wikipedia.org/wiki/Message_authentication_code) signatures of data
+* Ability to add timestamps to signed tokens and use custom epoch if needed.
+* BLAKE3 signatures and Base58 time encoding provides outstanding performance and security.
+* A very simple to use API with good documentation and 100% test coverage.
+* Various helper methods for parsing tokens
 
 ## Tests
 To run all tests, execute this command: 
