@@ -54,7 +54,7 @@ func main() {
 	d, err := s.Unsign(token)
 	if err != nil {
 		// The signature is not valid. The token was tampered with, forged, or maybe it's
-		// not even a token at all. It's not safe to use it.
+		// not even a token at all.It's not safe to use it.
 		log.Println("Invalid signature error:", err)
 	} else {
 		// The signature is valid, so it is safe to use the data.
@@ -72,7 +72,7 @@ func main() {
 
 	// The token should be not expired at this point.
 	if time.Since(ts.Timestamp) < time.Second {
-		log.Println("Token with timestamp has not expired!")
+		fmt.Println("Token with timestamp has not expired!")
 	}
 
 	// Wait two seconds to expire the token.
@@ -80,7 +80,7 @@ func main() {
 
 	// The token should be expired at this point.
 	if time.Since(ts.Timestamp) > time.Second {
-		log.Println("Token is expired!")
+		fmt.Println("Token is expired!")
 	}
 }
 ~~~
