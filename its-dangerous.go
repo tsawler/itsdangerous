@@ -33,23 +33,29 @@ var ErrShortToken = errors.New("token is too small to be valid")
 // If a larger key is provided it will be truncated to 64 bytes.
 // func New(key []byte, o *Options) *Sword {
 func New(key []byte, options ...func(*Sword)) *Sword {
+	// Make the key at least 32 bytes long.
 	key = padSecret(key)
+
 	// Create a map for decoding Base58.  This speeds up the process tremendously.
 	for i := 0; i < len(encodeBase58Map); i++ {
 		decodeBase58Map[encodeBase58Map[i]] = byte(i)
 	}
 
+	// Create an empty variable of type Sword.
 	s := &Sword{}
 
+	// Add options, if any.
 	for _, opt := range options {
 		opt(s)
 	}
 
+	// Add the hash.
 	s.hash = blake3.New(32, key)
 
 	return s
 }
 
+// padSecret will make the key at least 32 bytes long.
 func padSecret(key []byte) []byte {
 	// Make sure key is at least 32 characters long.
 	if len(key) < 32 {
@@ -79,7 +85,6 @@ func Timestamp(s *Sword) {
 // Sign signs data and returns []byte in the format `data.signature`. Optionally
 // add a timestamp and return in the format `data.timestamp.signature`
 func (s *Sword) Sign(data []byte) []byte {
-
 	// Build the payload
 	el := base64.RawURLEncoding.EncodedLen(s.hash.Size())
 	var t []byte
@@ -112,7 +117,6 @@ func (s *Sword) Sign(data []byte) []byte {
 // Unsign validates a signature and if successful returns the data portion of
 // the []byte. If unsuccessful it will return an error and nil for the data.
 func (s *Sword) Unsign(token []byte) ([]byte, error) {
-
 	tl := len(token)
 	el := base64.RawURLEncoding.EncodedLen(s.hash.Size())
 
