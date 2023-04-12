@@ -69,7 +69,7 @@ func main() {
 	token = s2.Sign(data)
 
 	// Parse the token.
-	ts := s2.Parse([]byte(token))
+	ts := s2.Parse(token)
 
 	// The token should be not expired at this point.
 	if time.Since(ts.Timestamp) < time.Second {
