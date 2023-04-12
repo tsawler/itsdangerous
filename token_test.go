@@ -6,7 +6,6 @@ import (
 )
 
 func TestParse(t *testing.T) {
-
 	secret := []byte(testSecret)
 	want := []byte(`1203981209381290.LutinRocks`)
 	bt := []byte(`1203981209381290.LutinRocks.ZGRsRXvTb08ld7xmJImL1ykGr8D1JmrSPGc134nBNRo`)
@@ -26,7 +25,6 @@ func TestParse(t *testing.T) {
 }
 
 func TestParseTimestamp(t *testing.T) {
-
 	secret := []byte(testSecret)
 	bt := []byte(`1203981209381290.LutinRocks.3gteYe.ZGRsRXvTb08ld7xmJImL1ykGr8D1JmrSPGc134nBNRo`)
 	want := []byte(`1203981209381290.LutinRocks`)
@@ -48,7 +46,6 @@ func TestParseTimestamp(t *testing.T) {
 }
 
 func BenchmarkParse(b *testing.B) {
-
 	bt := []byte(`1203981209381290.LutinRocks.ZGRsRXvTb08ld7xmJImL1ykGr8D1JmrSPGc134nBNRo`)
 	secret := []byte(testSecret)
 	s := New(secret)
@@ -61,7 +58,6 @@ func BenchmarkParse(b *testing.B) {
 }
 
 func BenchmarkParseTimestamp(b *testing.B) {
-
 	bt := []byte(`1203981209381290.LutinRocks.3gteYe.ZGRsRXvTb08ld7xmJImL1ykGr8D1JmrSPGc134nBNRo`)
 	secret := []byte(testSecret)
 	s := New(secret, Timestamp)

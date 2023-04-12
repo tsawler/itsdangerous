@@ -7,11 +7,9 @@ import (
 	"time"
 )
 
-// var testSecret = "Y6gpPebdkwwRjJRTVhJmbiP4Ng94pnAt"
 var testSecret = "AVerySecretString"
 
 func TestTimeCoding(t *testing.T) {
-
 	New(nil) // needed to init the decodemap
 
 	var now int64
@@ -28,8 +26,8 @@ func TestTimeCoding(t *testing.T) {
 		now += 1 + now*2
 	}
 }
-func TestNewNil(t *testing.T) {
 
+func TestNewNil(t *testing.T) {
 	s := New(nil)
 	if s == nil {
 		t.Fatal("New returned a nil")
@@ -57,7 +55,6 @@ func TestNewSecret(t *testing.T) {
 }
 
 func TestNewSecretTooBig(t *testing.T) {
-
 	secret := []byte(`B1nzyRateLid;flkjasdl;fjasd;lkfjkl;ljasd;fkljsda;fkljasd;klfj;asdjts`)
 	s := New(secret)
 	if s == nil {
@@ -71,11 +68,9 @@ func TestNewSecretTooBig(t *testing.T) {
 	if s.dirty {
 		t.Fatal("New returned a dirty hash")
 	}
-
 }
 
 func TestUnsignTooLittle(t *testing.T) {
-
 	secret := []byte(testSecret)
 	token := []byte("9yhD.QheV.k0W")
 
@@ -89,11 +84,9 @@ func TestUnsignTooLittle(t *testing.T) {
 	if err != ErrShortToken {
 		t.Fatal("Unsign did not return the correct error")
 	}
-
 }
 
 func TestSign(t *testing.T) {
-
 	secret := []byte(testSecret)
 	secret = padSecret(secret)
 	//secret := []byte("hello")
@@ -111,7 +104,6 @@ func TestSign(t *testing.T) {
 	}
 
 	// sign after a dirty hash
-
 	if !s.dirty {
 		t.Fatal("Hash is not dirty, but it should be")
 	}
@@ -124,11 +116,9 @@ func TestSign(t *testing.T) {
 		t.Logf("got : \n%s\n", token)
 		t.Fatal("token and want do not match")
 	}
-
 }
 
 func TestSignTimestamp(t *testing.T) {
-
 	secret := []byte(testSecret)
 	data := []byte(`1203981209381290.LutinRocks`)
 
@@ -146,11 +136,9 @@ func TestSignTimestamp(t *testing.T) {
 	if token[27] != '.' || token[34] != '.' {
 		t.Fatal("Doesn't appear to be a timestamp.")
 	}
-
 }
 
 func TestSignEpoch(t *testing.T) {
-
 	secret := []byte(testSecret)
 	data := []byte(`1203981209381290.LutinRocks`)
 
@@ -168,11 +156,9 @@ func TestSignEpoch(t *testing.T) {
 	if token[27] != '.' || token[33] != '.' {
 		t.Fatal("Doesn't appear to be a timestamp.")
 	}
-
 }
 
 func TestUnsign(t *testing.T) {
-
 	secret := []byte(testSecret)
 	secret = padSecret(secret)
 	token := []byte(`1203981209381290.LutinRocks.p5l-D9w5MtSGs9LyTR5fWGHkP-5dW2YvBrYl1JGrA7Y`)
@@ -277,6 +263,7 @@ func BenchmarkSignBigReuse(b *testing.B) {
 		s.Sign(data)
 	}
 }
+
 func BenchmarkUnsignLittle(b *testing.B) {
 	secret := []byte(testSecret)
 	data := []byte(`1203981209381290.LutinRocks`)
@@ -333,7 +320,6 @@ func BenchmarkUnsignReuseBig(b *testing.B) {
 }
 
 func BenchmarkEncodeBase58(b *testing.B) {
-
 	now := time.Now().Unix()
 	by := make([]byte, 6)
 
@@ -345,7 +331,6 @@ func BenchmarkEncodeBase58(b *testing.B) {
 }
 
 func BenchmarkDecodeBase58(b *testing.B) {
-
 	now := time.Now().Unix()
 	by := make([]byte, 6)
 	encodeBase58(now, by)
