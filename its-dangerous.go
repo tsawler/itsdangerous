@@ -29,6 +29,7 @@ var ErrShortToken = errors.New("token is too small to be valid")
 
 // New takes a secret key and returns a new Sword.  If no Options are provided
 // then minimal defaults will be used. NOTE: The key must be 32 bytes.
+// If a key < 32 bytes is provided, it will be padded to 32 bytes.
 // If a larger key is provided it will be truncated to 64 bytes.
 // func New(key []byte, o *Options) *Sword {
 func New(key []byte, options ...func(*Sword)) *Sword {
