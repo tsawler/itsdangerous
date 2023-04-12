@@ -16,6 +16,47 @@ Go get the package in the usual way:
 go get -u github.com/tsawler/itsdangerous
 ~~~
 
+## Usage
+A simple example:
+
+~~~
+package main
+
+import (
+	"fmt"
+	signer "github.com/tsawler/itsdangerous"
+	"log"
+)
+
+func main() {
+	// Create a secret; typically, make this 32 characters long.
+	var secret = []byte("some-very-good-secret")
+	// The data to be signed.
+	var data = []byte("https://example.com?id=10")
+
+	// Create a new instance of itsdangerous.
+	s := signer.New(secret)
+
+	// Sign the data; we get back a byte array with the signature appended.
+	token := s.Sign(data)
+
+	// Unsign the token to verify it. If successful the data portion of the
+	// token is returned.  If unsuccessful then d will be nil, and an error
+	// is returned.
+	d, err := s.Unsign(token)
+	if err != nil {
+		// The signature is not valid. The token was tampered with, forged, or maybe it's
+		// not even a token at all.It's not safe to use it.
+		log.Println("Invalid signature error:", err)
+	} else {
+		// The signature is valid, so it is safe to use the data.
+		fmt.Println("Unsigned:", string(d))
+		fmt.Println("Signed:", string(token))
+		fmt.Println("Valid signature!")
+	}
+}
+~~~
+
 ## Tests
 To run all tests, execute this command: 
 
