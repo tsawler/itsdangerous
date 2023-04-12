@@ -68,14 +68,19 @@ func main() {
 	token = s2.Sign(data)
 
 	// Parse the token.
-	ts := s.Parse([]byte(token))
+	ts := s2.Parse([]byte(token))
+
+	// The token should be not expired at this point.
+	if time.Since(ts.Timestamp) < time.Duration(1)*time.Second {
+		log.Println("Token with timestamp has not expired!")
+	}
 
 	// Wait two seconds to expire the token.
-	time.Sleep(2)
+	time.Sleep(2 * time.Second)
 
 	// The token should be expired at this point.
 	if time.Since(ts.Timestamp) > time.Second {
-		log.Println("Token with timestamp is expired!")
+		log.Println("Token is expired!")
 	}
 }
 ~~~
@@ -87,6 +92,7 @@ tcs@Grendel example-itsdangerous % go run .
 Signed: https://example.com?id=10.eoaZ-lDxxuZ-BK5PFmbZlVps0Htqi6NILs0HR47Dvs0
 Unsigned: https://example.com?id=10
 Valid signature!
+Token with timestamp has not expired!
 Token with timestamp is expired!
 ~~~
 
