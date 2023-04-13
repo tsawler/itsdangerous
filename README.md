@@ -94,9 +94,10 @@ The output of this program is something like:
 
 ~~~
 tcs@Grendel example-itsdangerous % go run .
-Signed: https://example.com?id=10.eoaZ-lDxxuZ-BK5PFmbZlVps0Htqi6NILs0HR47Dvs0
 Unsigned: https://example.com?id=10
+Signed: https://example.com?id=10.eoaZ-lDxxuZ-BK5PFmbZlVps0Htqi6NILs0HR47Dvs0
 Valid signature!
+Signed with timestamp: https://example.com?id=10.3yzzW5.fuoQr38zm2rQdbwFdXtU1BOeRmp1HDmyNhOM3ZTXfCY
 Token with timestamp has not expired!
 Token with timestamp is expired!
 ~~~
