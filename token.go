@@ -1,4 +1,4 @@
-package goalone
+package itsdangerous
 
 import (
 	"encoding/base64"
