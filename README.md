@@ -31,7 +31,7 @@ package main
 
 import (
 	"fmt"
-	signer "github.com/tsawler/itsdangerous"
+	"github.com/tsawler/itsdangerous"
 	"log"
 	"time"
 )
@@ -39,12 +39,12 @@ import (
 func main() {
 	// Create a secret; typically, make this 32 characters long.
 	var secret = []byte("some-very-good-secret")
-	
+
 	// The data to be signed.
 	var data = []byte("https://example.com?id=10")
 
 	// Create a new instance of itsdangerous.
-	s := signer.New(secret)
+	s := itsdangerous.New(secret)
 
 	// Sign the data; we get back a byte array with the signature appended.
 	token := s.Sign(data)
@@ -65,8 +65,11 @@ func main() {
 	}
 
 	// Create a new signer, this time with a timestamp.
-	s2 := signer.New(secret, signer.Timestamp)
+	s2 := itsdangerous.New(secret, itsdangerous.Timestamp)
 	token = s2.Sign(data)
+
+	// print out new signed data
+	fmt.Println("Signed with timestamp:", string(token))
 
 	// Parse the token.
 	ts := s2.Parse(token)
@@ -81,9 +84,10 @@ func main() {
 
 	// The token should be expired at this point.
 	if time.Since(ts.Timestamp) > time.Second {
-		fmt.Println("Token is expired!")
+		fmt.Println("Token with timestamp is expired!")
 	}
 }
+
 ~~~
 
 The output of this program is something like:
