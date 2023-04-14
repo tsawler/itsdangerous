@@ -50,7 +50,7 @@ func main() {
 	token := s.Sign(data)
 
 	// Unsign the token to verify it. If successful the data portion of the
-	// token is returned.  If unsuccessful then d will be nil, and an error
+	// token is returned. If unsuccessful then d will be nil, and an error
 	// is returned.
 	d, err := s.Unsign(token)
 	if err != nil {
