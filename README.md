@@ -55,7 +55,7 @@ func main() {
 	d, err := s.Unsign(token)
 	if err != nil {
 		// The signature is not valid. The token was tampered with, forged, or maybe it's
-		// not even a token at all.It's not safe to use it.
+		// not even a token at all. It's not safe to use it.
 		log.Println("Invalid signature error:", err)
 	} else {
 		// The signature is valid, so it is safe to use the data.
