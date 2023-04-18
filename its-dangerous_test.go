@@ -10,7 +10,7 @@ import (
 var testSecret = "AVerySecretString"
 
 func TestTimeCoding(t *testing.T) {
-	New(nil) // needed to init the decodemap
+	New(nil) // this is needed to init the decodemap
 
 	var now int64
 	for i := 0; i < 41; i++ {
