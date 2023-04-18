@@ -36,7 +36,7 @@ func New(key []byte, options ...func(*Sword)) *Sword {
 	// Make the key at least 32 bytes long.
 	key = padSecret(key)
 
-	// Create a map for decoding Base58.  This speeds up the process tremendously.
+	// Create a map for decoding Base58.  This speeds up the process a great deal.
 	for i := 0; i < len(encodeBase58Map); i++ {
 		decodeBase58Map[encodeBase58Map[i]] = byte(i)
 	}
