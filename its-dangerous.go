@@ -49,7 +49,7 @@ func New(key []byte, options ...func(*Sword)) *Sword {
 		opt(s)
 	}
 
-	// Add the hash.
+	// Add the hash to the Sword.
 	s.hash = blake3.New(32, key)
 
 	return s
