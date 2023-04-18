@@ -4,6 +4,7 @@
 <a href="https://pkg.go.dev/github.com/tsawler/itsdangerous"><img src="https://img.shields.io/badge/godoc-reference-%23007d9c.svg"></a>
 [![Go Report Card](https://goreportcard.com/badge/github.com/tsawler/itsdangerous)](https://goreportcard.com/report/github.com/tsawler/itsdangerous)
 ![Tests](https://github.com/tsawler/itsdangerous/actions/workflows/tests.yml/badge.svg)
+[![Go Coverage](https://github.com/tsawler/itsdangerous/wiki/coverage.svg)](https://raw.githack.com/wiki/tsawler/itsdangerous/coverage.html)
 
 # It's Dangerous
 
